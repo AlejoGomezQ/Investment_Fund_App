@@ -20,24 +20,24 @@ const UserSchema = new mongoose.Schema({
         type: Number,
         required: true,
       },
+      notificationPreferences: {
+        email: {
+          type: String,
+        },
+        sms: {
+          type: String,
+        },
+        preferredMethod: {
+          type: String,
+          enum: ["EMAIL", "SMS"],
+          required: true,
+        },
+      },
     },
   ],
   transactions: {
     type: [TransactionSchema],
     default: [],
-  },
-  notificationPreferences: {
-    email: {
-      type: String,
-    },
-    sms: {
-      type: String,
-    },
-    preferredMethod: {
-      type: String,
-      enum: ["EMAIL", "SMS"],
-      required: true,
-    },
   },
 });
 

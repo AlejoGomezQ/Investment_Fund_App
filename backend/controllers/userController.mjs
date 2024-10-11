@@ -20,7 +20,7 @@ export const getUserInfo = async (req, res) => {
 
 export const subscribeToFund = async (req, res) => {
   const { userId } = req.params;
-  const { fundId, amount } = req.body;
+  const { fundId, amount, notificationPreferences } = req.body;
 
   try {
     const user = await User.findById(userId);
@@ -32,6 +32,12 @@ export const subscribeToFund = async (req, res) => {
 
     if (!fund) {
       return res.status(404).json({ message: "Fondo no encontrado" });
+    }
+
+    if (amount < fund.minAmount) {
+      return res.status(400).json({
+        message: `El monto mínimo para suscribirse a este fondo es de ${fund.minAmount}`,
+      });
     }
 
     const isAlreadySubscribed = user.funds.some(
@@ -52,7 +58,7 @@ export const subscribeToFund = async (req, res) => {
     }
 
     user.balance -= amount;
-    user.funds.push({ fundId, amount });
+    user.funds.push({ fundId, amount, notificationPreferences });
 
     user.transactions.push({
       transactionId: `TRX-${Date.now()}`,
@@ -135,7 +141,7 @@ export const getUserTransactions = async (req, res) => {
   }
 };
 
-export const changeNotificationPreferences = async (req, res) => {
+/* export const changeNotificationPreferences = async (req, res) => {
   const { userId, email, sms, preferredMethod } = req.body;
 
   try {
@@ -167,3 +173,4 @@ export const changeNotificationPreferences = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+ */
