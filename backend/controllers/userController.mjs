@@ -2,8 +2,9 @@ import User from "../models/user.mjs";
 import Fund from "../models/fund.mjs";
 
 export const getUserInfo = async (req, res) => {
+  const { userId } = req.params;
   try {
-    const user = await User.findById(req.params.id).populate([
+    const user = await User.findById(userId).populate([
       { path: "funds.fundId" },
       { path: "transactions.fundId" },
     ]);
@@ -25,12 +26,29 @@ export const subscribeToFund = async (req, res) => {
     const user = await User.findById(userId);
     const fund = await Fund.findById(fundId);
 
-    if (!user || !fund) {
-      return res.status(404).json({ message: "Usuario o fondo no encontrado" });
+    if (!user) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+
+    if (!fund) {
+      return res.status(404).json({ message: "Fondo no encontrado" });
+    }
+
+    const isAlreadySubscribed = user.funds.some(
+      (fund) => fund.fundId.toString() === fundId
+    );
+
+    if (isAlreadySubscribed) {
+      return res.status(400).json({
+        message:
+          "Ya estás suscrito a este fondo. Cancela la suscripción actual antes de suscribirte nuevamente.",
+      });
     }
 
     if (user.balance < amount) {
-      return res.status(400).json({ message: "Saldo insuficiente" });
+      return res.status(400).json({
+        message: `No tiene saldo disponible para vincularse al fondo ${fund.name}`,
+      });
     }
 
     user.balance -= amount;
@@ -76,8 +94,6 @@ export const cancelFund = async (req, res) => {
         .status(404)
         .json({ message: "Usuario no suscrito a este fondo" });
     }
-
-    console.log(user.funds[fundIndex].amount);
 
     const amount = user.funds[fundIndex].amount;
 
