@@ -2,9 +2,8 @@
   "name": "fondos-inv-app",
   "version": "1.0.0",
   "description": "Aplicación para gestion de fondos de inversión del banco btg pactual",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon /backend/server.mjs && cd frontend && ng serve --o"
   },
   "keywords": [
     "Fondos",
