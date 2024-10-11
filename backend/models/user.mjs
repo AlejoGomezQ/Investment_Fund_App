@@ -16,9 +16,16 @@ const UserSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Fund",
       },
+      amount: {
+        type: Number,
+        required: true,
+      },
     },
   ],
-  transactions: [TransactionSchema],
+  transactions: {
+    type: [TransactionSchema],
+    default: [],
+  },
   notificationPreferences: {
     email: {
       type: String,

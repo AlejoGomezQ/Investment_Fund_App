@@ -7,7 +7,7 @@ const TransactionSchema = new mongoose.Schema(
       required: true,
     },
     fundId: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Fund",
       required: true,
     },
@@ -28,4 +28,4 @@ const TransactionSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Transaction", TransactionSchema);
+export default TransactionSchema;
