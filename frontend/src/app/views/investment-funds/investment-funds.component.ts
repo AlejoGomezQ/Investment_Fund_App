@@ -3,6 +3,7 @@ import { FundListComponent } from '../../components/fund-list/fund-list.componen
 import { TransactionHistoryComponent } from '../../components/transaction-history/transaction-history.component';
 import { InvestmentFormComponent } from '../../components/investment-form/investment-form.component';
 import { ActiveFundsComponent } from '../../components/active-funds/active-funds.component';
+import { HeaderComponent } from '../../components/header/header.component';
 
 @Component({
   selector: 'app-investment-funds',
@@ -12,6 +13,7 @@ import { ActiveFundsComponent } from '../../components/active-funds/active-funds
     TransactionHistoryComponent,
     InvestmentFormComponent,
     ActiveFundsComponent,
+    HeaderComponent,
   ],
   templateUrl: './investment-funds.component.html',
   styleUrl: './investment-funds.component.css',

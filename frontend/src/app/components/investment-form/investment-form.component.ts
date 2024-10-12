@@ -7,17 +7,21 @@ import {
 } from '@angular/forms';
 import { FundService } from '../../services/fund.service';
 import { Fund } from '../../models/fund';
+import { ToastComponent } from '../toast/toast.component';
 
 @Component({
   selector: 'app-investment-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ToastComponent],
   templateUrl: './investment-form.component.html',
   styleUrl: './investment-form.component.css',
 })
 export class InvestmentFormComponent implements OnInit {
   funds$: Fund[] = [];
   investmentForm: FormGroup;
+  showToast: boolean = false;
+  toastMessage: string = '';
+  toastSuccess: boolean = true;
 
   constructor(
     private fundService: FundService,
@@ -41,7 +45,6 @@ export class InvestmentFormComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error al cargar los fondos:', error);
-        this.showNotification('Error al cargar los fondos', 'error');
       },
     });
   }
@@ -50,29 +53,40 @@ export class InvestmentFormComponent implements OnInit {
     if (this.investmentForm.valid) {
       const { fundId, amount, notificationPreferences } =
         this.investmentForm.value;
+      const selectedFund = this.funds$.find((fund) => fund.fundId === fundId);
 
-      console.log('Form data:', { fundId, amount, notificationPreferences });
       this.fundService
         .subscribeToFund(fundId, amount, notificationPreferences)
         .subscribe({
           next: () => {
-            this.showNotification('Inversión realizada con éxito', 'success');
+            this.showToastMessage(
+              `Has suscrito al fondo ${selectedFund?.name}`,
+              true
+            );
             this.investmentForm.reset();
           },
           error: (error) => {
+            this.showToastMessage(
+              `No puedes suscribirte al fondo ${selectedFund?.name}`,
+              false
+            );
             console.error('Error al realizar la inversión:', error);
-            this.showNotification('Error al realizar la inversión', 'error');
           },
         });
     } else {
-      this.showNotification(
+      this.showToastMessage(
         'Por favor, complete todos los campos correctamente',
-        'error'
+        false
       );
     }
   }
 
-  showNotification(message: string, type: 'success' | 'error' = 'success') {
-    console.log(`${type.toUpperCase()}: ${message}`);
+  showToastMessage(message: string, isSuccess: boolean) {
+    this.toastMessage = message;
+    this.toastSuccess = isSuccess;
+    this.showToast = true;
+    setTimeout(() => {
+      this.showToast = false;
+    }, 3000);
   }
 }

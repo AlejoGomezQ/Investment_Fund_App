@@ -1,0 +1,12 @@
+<header class="bg-white shadow rounded-xl">
+    <nav class=" mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+        <div class="flex items-center">
+            <img src="../../../assets/btg-pactual-logo.png" alt="BTG-pactual-logo" class="h-8 w-auto">
+        </div>
+        <div class="flex items-center">
+            <span class="text-gray-700 mr-4">{{ userName }}</span>
+            <span class="font-bold text-green-600">{{ availableAmount | currency:'COP':'symbol-narrow':'1.0-0' }}</span>
+            <span class="ml-1">COP</span>
+        </div>
+    </nav>
+</header>

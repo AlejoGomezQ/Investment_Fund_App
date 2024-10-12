@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CurrencyPipe } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 
 //Servicios
 import { FundService } from '../../services/fund.service';
@@ -10,7 +10,7 @@ import { Fund } from '../../models/fund';
 @Component({
   selector: 'app-fund-list',
   standalone: true,
-  imports: [CurrencyPipe],
+  imports: [CommonModule, CurrencyPipe],
   templateUrl: './fund-list.component.html',
   styleUrl: './fund-list.component.css',
 })

@@ -1,1 +1,6 @@
-<p>toast works!</p>
+@if (show) {
+<div [@toastAnimation] class="fixed bottom-4 right-4 p-4 rounded-md shadow-lg"
+    [ngClass]="{'bg-green-500': isSuccess, 'bg-red-500': !isSuccess}">
+    <p class="text-white">{{ message }}</p>
+</div>
+}
