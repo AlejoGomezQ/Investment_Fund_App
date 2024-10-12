@@ -1,5 +1,6 @@
 import express, { json } from "express";
 import { config } from "dotenv";
+import cors from "cors";
 import invesmentFundRoutes from "./routes/invesmentFundRoutes.mjs";
 import databaseInstance from "./database.mjs";
 
@@ -7,6 +8,12 @@ config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+app.use(
+  cors({
+    origin: "http://localhost:4200",
+  })
+);
 
 app.use(json());
 

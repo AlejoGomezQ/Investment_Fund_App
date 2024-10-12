@@ -8,6 +8,7 @@ dotenv.config();
 
 const users = [
   {
+    userId: 11522345678,
     name: "John Doe",
     balance: 500000,
     funds: [],
@@ -23,24 +24,19 @@ const users = [
 const seedUsers = async () => {
   try {
     await databaseInstance.connect();
-
     await User.deleteMany({});
-    console.log("Datos anteriores eliminados correctamente");
-
+    await User.collection.dropIndexes();
     await User.insertMany(users);
-    console.log("Datos de usuarios insertados correctamente");
   } catch (error) {
     console.error("Error en el proceso de seeding:", error);
     process.exit(1);
   } finally {
     await mongoose.connection.close();
-    console.log("Conexión a MongoDB cerrada correctamente");
   }
 };
 
 seedUsers()
   .then(() => {
-    console.log("Proceso de seeding finalizado correctamente");
     process.exit(0);
   })
   .catch((error) => {
