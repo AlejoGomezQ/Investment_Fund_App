@@ -11,7 +11,7 @@ import {
 const router = Router();
 
 //Obtener todos los fondos de inversión
-router.get("/", getAllFunds);
+router.get("/funds", getAllFunds);
 
 //Obtener todas las transacciones de un usuario
 router.get("/:userId", getUserInfo);

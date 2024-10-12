@@ -7,20 +7,21 @@ import { Fund } from '../models/fund';
   providedIn: 'root',
 })
 export class FundService {
-  private apiUrl =
-    'http://localhost:3000/api/investment-funds/670970e4bb534b1383dbfaf7';
+  private baseUrl = 'http://localhost:3000/api/investment-funds';
 
   constructor(private http: HttpClient) {}
 
   getFunds(): Observable<Fund[]> {
-    return this.http.get<Fund[]>(this.apiUrl);
+    return this.http.get<Fund[]>(`${this.baseUrl}/funds`);
   }
 
-  subscribeToFund(fundId: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/${fundId}/subscribe`, {});
+  subscribeToFund(fundId: number): Observable<any> {
+    const userId = 'current-user-id';
+    return this.http.post(`${this.baseUrl}/${userId}/subscribe`, { fundId });
   }
 
-  cancelFund(fundId: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/${fundId}/leave`, {});
+  cancelFund(fundId: number): Observable<any> {
+    const userId = 'current-user-id';
+    return this.http.post(`${this.baseUrl}/${userId}/cancel`, { fundId });
   }
 }

@@ -1,16 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
+
+//Servicios
 import { FundService } from '../../services/fund.service';
+
+//Modelos
+import { Fund } from '../../models/fund';
 
 @Component({
   selector: 'app-fund-list',
   standalone: true,
-  imports: [],
+  imports: [CurrencyPipe],
   templateUrl: './fund-list.component.html',
   styleUrl: './fund-list.component.css',
 })
 export class FundListComponent implements OnInit {
-  funds: any[] = [];
+  funds: Fund[] = [];
 
   constructor(private fundService: FundService) {}
 
@@ -28,28 +33,4 @@ export class FundListComponent implements OnInit {
       },
     });
   }
-
-  subscribeToFund(fund: any) {
-    this.fundService.subscribeToFund(fund.id).subscribe({
-      next: () => {
-        this.showNotification('Subscripción exitosa al fondo' + fund.name);
-      },
-      error: (error) => {
-        console.error('Error al subscribirse al fondo: ', error);
-      },
-    });
-  }
-
-  cancelFund(fund: any) {
-    this.fundService.cancelFund(fund.id).subscribe({
-      next: () => {
-        this.showNotification('Se canceló la suscripción al fondo' + fund.name);
-      },
-      error: (error) => {
-        console.error('Error al cancelar el fondo: ', error);
-      },
-    });
-  }
-
-  showNotification(message: string) {}
 }

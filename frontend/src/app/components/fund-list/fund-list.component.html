@@ -1,25 +1,15 @@
-<div class="bg-white shadow rounded-lg p-6">
-    <h2 class="text-xl font-semibold mb-4">Available Funds</h2>
-    <ul class="space-y-4">
-        @for (fund of funds; track $index) {
-        <li class="border-b pb-4">
-            <div class="flex justify-between items-center">
-                <div>
-                    <h3 class="font-medium">{{ fund.name }}</h3>
-                    <p class="text-sm text-gray-600">{{ fund.category }}</p>
-                    <p class="text-sm">Min. Amount: {{ fund.minAmount }}</p>
-                </div>
-                <div class="space-x-2">
-                    <button (click)="subscribeToFund(fund)"
-                        class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600">
-                        Subscribe
-                    </button>
-                    <button (click)="cancelFund(fund)" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
-                        Leave
-                    </button>
-                </div>
-            </div>
-        </li>
-        }
-    </ul>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+    @for (fund of funds; track fund.fundId) {
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <div class="bg-[#3B82F6] text-white p-4">
+            <h3 class="text-xl font-semibold">{{ fund.name }}</h3>
+        </div>
+        <div class="p-4">
+            <p class="text-[#6B7280] mb-2">Categoría: {{ fund.category }}</p>
+            <p class="text-[#374151] font-semibold">
+                Monto Mínimo: {{ fund.minAmount }}
+            </p>
+        </div>
+    </div>
+    }
 </div>
