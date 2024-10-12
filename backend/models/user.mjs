@@ -13,6 +13,12 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    email: {
+      type: String,
+    },
+    sms: {
+      type: String,
+    },
     balance: {
       type: Number,
       default: 500000,
@@ -28,17 +34,9 @@ const UserSchema = new mongoose.Schema(
           required: true,
         },
         notificationPreferences: {
-          email: {
-            type: String,
-          },
-          sms: {
-            type: String,
-          },
-          preferredMethod: {
-            type: String,
-            enum: ["EMAIL", "SMS"],
-            required: true,
-          },
+          type: String,
+          enum: ["EMAIL", "SMS"],
+          required: true,
         },
       },
     ],

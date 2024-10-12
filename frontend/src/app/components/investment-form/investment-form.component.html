@@ -1,0 +1,37 @@
+<form [formGroup]="investmentForm" (ngSubmit)="onSubmit()" class="bg-white shadow-lg rounded-lg p-6 mb-8">
+    <h2 class="text-2xl font-semibold mb-4 text-[#00205B]">Realizar Inversión</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="mb-4">
+            <label for="fundId" class="block text-sm font-medium text-gray-700 mb-1">Seleccionar Fondo</label>
+            <select id="fundId" formControlName="fundId"
+                class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3B82F6]">
+                <option value="">Seleccione un fondo</option>
+                @for (fund of funds$; track fund.fundId) {
+                <option [value]="fund.fundId">{{ fund.name }}</option>
+                }
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label for="amount" class="block text-sm font-medium text-gray-700 mb-1">Monto a Invertir</label>
+            <input id="amount" type="number" formControlName="amount" min="0"
+                class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3B82F6]">
+        </div>
+
+        <div class="mb-4">
+            <label for="notificationPreferences" class="block text-sm font-medium text-gray-700 mb-1">Preferencia de
+                Notificación</label>
+            <select id="notificationPreferences" formControlName="notificationPreferences"
+                class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#3B82F6]">
+                <option value="">Seleccione una preferencia</option>
+                <option value="EMAIL">Email</option>
+                <option value="SMS">SMS</option>
+            </select>
+        </div>
+    </div>
+
+    <button type="submit"
+        class="mt-4 bg-[#3B82F6] hover:bg-[#2563EB] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        Invertir
+    </button>
+</form>

@@ -10,14 +10,12 @@ const users = [
   {
     userId: 11522345678,
     name: "John Doe",
+    email: "jhondoe@gamil.com",
+    sms: "1234567890",
     balance: 500000,
     funds: [],
     transactions: [],
-    notificationPreferences: {
-      email: "jhondoe@gamil.com",
-      sms: "1234567890",
-      preferredMethod: "EMAIL",
-    },
+    notificationPreferences: "EMAIL",
   },
 ];
 
