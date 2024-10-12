@@ -1,7 +1,5 @@
 export interface NotificationPreferences {
-  email?: String;
-  sms?: String;
-  preferredMethod: NotificationMethod;
+  notificationPreference: NotificationMethod;
 }
 
 enum NotificationMethod {

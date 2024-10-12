@@ -20,17 +20,38 @@ export class FundService {
     fundId: number,
     amount: number,
     notificationPreferences: NotificationPreferences
-  ): Observable<any> {
+  ): Observable<{
+    fundId: number;
+    amount: number;
+    notificationPreferences: NotificationPreferences;
+  }> {
     const userId = 11522345678;
-    return this.http.post(`${this.baseUrl}/${userId}/subscribe`, {
+    return this.http.post<{
+      fundId: number;
+      amount: number;
+      notificationPreferences: NotificationPreferences;
+    }>(`${this.baseUrl}/${userId}/subscribe`, {
       fundId,
       amount,
       notificationPreferences,
     });
   }
 
-  cancelFund(fundId: number): Observable<any> {
-    const userId = 'current-user-id';
-    return this.http.post(`${this.baseUrl}/${userId}/cancel`, { fundId });
+  cancelFund(
+    userId: string,
+    fundId: number
+  ): Observable<{ userId: number; fundId: number }> {
+    return this.http.post<{ userId: number; fundId: number }>(
+      `${this.baseUrl}/${userId}/cancel`,
+      { fundId }
+    );
+  }
+
+  getActiveFunds(userId: string): Observable<Fund[]> {
+    return this.http.get<Fund[]>(`${this.baseUrl}/${userId}/active-funds`);
+  }
+
+  getTransactions(userId: string): Observable<string> {
+    return this.http.get<string>(`${this.baseUrl}/${userId}/transactions`);
   }
 }
