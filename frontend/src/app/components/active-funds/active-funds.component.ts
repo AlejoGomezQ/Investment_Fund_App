@@ -14,7 +14,7 @@ import { Fund } from '../../models/fund';
 export class ActiveFundsComponent implements OnInit {
   activeFunds: any[] = [];
   userId: string = '11522345678';
-  isModalOpen: boolean = true;
+  isModalOpen: boolean = false;
   selectedFund: any = null;
 
   constructor(private fundService: FundService) {}

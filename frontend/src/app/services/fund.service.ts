@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Fund } from '../models/fund';
 import { NotificationPreferences } from '../models/notificationPreferences';
+import { Transaction } from '../models/transaction';
 
 @Injectable({
   providedIn: 'root',
@@ -51,7 +52,7 @@ export class FundService {
     return this.http.get<Fund[]>(`${this.baseUrl}/${userId}/active-funds`);
   }
 
-  getTransactions(userId: string): Observable<string> {
-    return this.http.get<string>(`${this.baseUrl}/${userId}/transactions`);
+  getTransactions(userId: string): Observable<Transaction> {
+    return this.http.get<Transaction>(`${this.baseUrl}/${userId}/transactions`);
   }
 }
