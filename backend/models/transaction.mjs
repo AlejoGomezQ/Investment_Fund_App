@@ -7,7 +7,7 @@ const TransactionSchema = new mongoose.Schema(
       required: true,
     },
     fundId: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Number,
       ref: "Fund",
       required: true,
     },

@@ -2,6 +2,12 @@ import mongoose from "mongoose";
 
 const FundSchema = new mongoose.Schema(
   {
+    fundId: {
+      type: Number,
+      required: true,
+      unique: true,
+      immutable: true,
+    },
     name: {
       type: String,
       required: true,

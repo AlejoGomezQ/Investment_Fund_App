@@ -3,11 +3,9 @@ import Fund from "../models/fund.mjs";
 
 export const getUserInfo = async (req, res) => {
   const { userId } = req.params;
+
   try {
-    const user = await User.findById(userId).populate([
-      { path: "funds.fundId" },
-      { path: "transactions.fundId" },
-    ]);
+    const user = await User.findOne({ userId });
 
     if (!user)
       return res.status(404).json({ message: "Usuario no encontrado" });
@@ -23,8 +21,8 @@ export const subscribeToFund = async (req, res) => {
   const { fundId, amount, notificationPreferences } = req.body;
 
   try {
-    const user = await User.findById(userId);
-    const fund = await Fund.findById(fundId);
+    const user = await User.findOne({ userId });
+    const fund = await Fund.findOne({ fundId });
 
     if (!user) {
       return res.status(404).json({ message: "Usuario no encontrado" });
@@ -80,8 +78,8 @@ export const cancelFund = async (req, res) => {
   const { fundId } = req.body;
 
   try {
-    const user = await User.findById(userId);
-    const fund = await Fund.findById(fundId);
+    const user = await User.findOne({ userId });
+    const fund = await Fund.findOne({ fundId });
 
     if (!user) {
       return res.status(404).json({ message: "Usuario no encontrado" });
@@ -129,7 +127,7 @@ export const getUserTransactions = async (req, res) => {
   const { userId } = req.params;
 
   try {
-    const user = await User.findById(userId).populate("transactions.fundId");
+    const user = await User.findOne({ userId });
 
     if (!user) {
       return res.status(404).json({ message: "Usuario no encontrado" });
@@ -145,7 +143,7 @@ export const getUserTransactions = async (req, res) => {
   const { userId, email, sms, preferredMethod } = req.body;
 
   try {
-    const user = await User.findById(userId);
+    const user = await User.findOne({ id: userId });
 
     if (!user) {
       return res.status(404).json({ message: "Usuario no encontrado" });
