@@ -1,13 +1,11 @@
 import mongoose from "mongoose";
-import { v4 as uuidv4 } from "uuid";
 
 import TransactionSchema from "./transaction.mjs";
 
 const UserSchema = new mongoose.Schema(
   {
     userId: {
-      type: String,
-      default: uuidv4,
+      type: Number,
       unique: true,
       immutable: true,
     },

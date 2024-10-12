@@ -43,6 +43,7 @@ const seedFunds = async () => {
   try {
     await databaseInstance.connect();
     await Fund.deleteMany({});
+    await Fund.collection.dropIndexes();
     await Fund.insertMany(funds);
   } catch (error) {
     console.error("Error en el proceso de seeding:", error);

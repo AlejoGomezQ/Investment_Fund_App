@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import { v4 as uuidv4 } from "uuid";
 
 import User from "../models/user.mjs";
 import databaseInstance from "../database.mjs";
@@ -9,7 +8,7 @@ dotenv.config();
 
 const users = [
   {
-    userId: uuidv4(),
+    userId: 11522345678,
     name: "John Doe",
     balance: 500000,
     funds: [],
@@ -26,6 +25,7 @@ const seedUsers = async () => {
   try {
     await databaseInstance.connect();
     await User.deleteMany({});
+    await User.collection.dropIndexes();
     await User.insertMany(users);
   } catch (error) {
     console.error("Error en el proceso de seeding:", error);
