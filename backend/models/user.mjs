@@ -29,6 +29,9 @@ const UserSchema = new mongoose.Schema(
           type: Number,
           ref: "Fund",
         },
+        fundName: {
+          type: String,
+        },
         amount: {
           type: Number,
           required: true,

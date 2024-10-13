@@ -24,10 +24,9 @@ export class TransactionHistoryComponent implements OnInit {
     this.fundService.getTransactions(this.userId).subscribe({
       next: (response) => {
         this.transactions$ = response.transactions;
-        console.log('Transactions loaded:', this.transactions$);
       },
       error: (error) => {
-        console.error('Error loading transactions:', error);
+        console.error('Error al cargar las transacciones:', error);
       },
     });
   }

@@ -12,7 +12,7 @@ import { Fund } from '../../models/fund';
   styleUrl: './active-funds.component.css',
 })
 export class ActiveFundsComponent implements OnInit {
-  activeFunds: any[] = [];
+  activeFunds$: any[] = [];
   userId: string = '11522345678';
   isModalOpen: boolean = false;
   selectedFund: any = null;
@@ -25,11 +25,12 @@ export class ActiveFundsComponent implements OnInit {
 
   loadActiveFunds(): void {
     this.fundService.getActiveFunds(this.userId).subscribe({
-      next: (funds) => {
-        this.activeFunds = funds;
+      next: (user) => {
+        this.activeFunds$ = user.funds;
+        console.log('Fondos activos:', this.activeFunds$);
       },
       error: (error) => {
-        console.error('Error loading active funds:', error);
+        console.error('Error al cargar los fondos:', error);
       },
     });
   }
@@ -45,12 +46,11 @@ export class ActiveFundsComponent implements OnInit {
         .cancelFund(this.userId, this.selectedFund.fundId)
         .subscribe({
           next: () => {
-            this.loadActiveFunds(); // Refresh the list after cancellation
+            this.loadActiveFunds();
             this.closeModal();
           },
           error: (error) => {
             console.error('Error canceling fund:', error);
-            // Handle error (e.g., show error message to user)
           },
         });
     }

@@ -3,6 +3,7 @@ export interface Fund {
   name: String;
   minAmount: Number;
   category: FundCategory;
+  amount?: Number;
 }
 
 enum FundCategory {

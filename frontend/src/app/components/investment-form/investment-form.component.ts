@@ -53,6 +53,7 @@ export class InvestmentFormComponent implements OnInit {
     if (this.investmentForm.valid) {
       const { fundId, amount, notificationPreferences } =
         this.investmentForm.value;
+
       const selectedFund = this.funds$.find((fund) => fund.fundId === +fundId);
 
       if (selectedFund) {
