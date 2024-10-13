@@ -43,6 +43,7 @@ export class FundService {
     userId: string,
     fundId: number
   ): Observable<{ userId: number; fundId: number }> {
+    console.log('Canceling fund:', fundId, userId);
     return this.http.post<{ userId: number; fundId: number }>(
       `${this.baseUrl}/${userId}/cancel`,
       { fundId }

@@ -42,17 +42,18 @@ export class ActiveFundsComponent implements OnInit {
 
   confirmCancelFund(): void {
     if (this.selectedFund) {
-      this.fundService
-        .cancelFund(this.userId, this.selectedFund.fundId)
-        .subscribe({
-          next: () => {
-            this.loadActiveFunds();
-            this.closeModal();
-          },
-          error: (error) => {
-            console.error('Error canceling fund:', error);
-          },
-        });
+      const { fundId, fundName } = this.selectedFund;
+
+      console.log('Cancelando fondo:', fundId, fundName, this.userId);
+      this.fundService.cancelFund(this.userId, fundId).subscribe({
+        next: () => {
+          this.loadActiveFunds();
+          this.closeModal();
+        },
+        error: (error) => {
+          console.error('Error canceling fund:', error);
+        },
+      });
     }
   }
 

@@ -13,7 +13,6 @@ const TransactionSchema = new mongoose.Schema(
     },
     fundName: {
       type: String,
-      required: true,
     },
     type: {
       type: String,
