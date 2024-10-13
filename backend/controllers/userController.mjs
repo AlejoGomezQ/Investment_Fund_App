@@ -95,9 +95,7 @@ export const cancelFund = async (req, res) => {
       return res.status(404).json({ message: "Fondo no encontrado" });
     }
 
-    const fundIndex = user.funds.findIndex(
-      (fund) => fund.fundId.toString() === fundId
-    );
+    const fundIndex = user.funds.findIndex((fund) => fund.fundId === fundId);
 
     if (fundIndex === -1) {
       return res
