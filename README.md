@@ -6,12 +6,12 @@ Fondos Inversión es una aplicación web diseñada para subscribirse a fondos de
 
 ## Tecnologías Utilizadas
 
-- _Backend:_
+ _Backend:_
 - Node.js
 - Express.js
 - MongoDB (ODM: Mongoose)
 
-- _Frontend:_
+ _Frontend:_
 - Angular
 - TailwindCSS
 
@@ -22,49 +22,49 @@ Verificar si se tiene Node.js y MongoDB Compass instalado y seguir los siguiente
 1. Clona el repositorio:
 
    ````bash
-   https://github.com/AlejoGomezQ/Investment_Fund_App.git```
+   https://github.com/AlejoGomezQ/Investment_Fund_App.git
 
    ````
 
 2. Acceder a la carpeta raíz del proyecto
 
    ````bash
-   cd fondos-inv-app```
+   cd fondos-inv-app
 
    ````
 
 3. Instalar las dependencias:
 
    ````bash
-   npm install```
+   npm install
 
    ````
 
 4. Acceder a la carpeta del backend
 
    ````bash
-   cd backend```
+   cd backend
 
    ````
 
 5. Instalar las dependencias del backend:
 
    ````bash
-   npm install```
+   npm install
 
    ````
 
 6. Regresar a la carpeta raíz e ingresar a la carpeta del frontend:
 
    ````bash
-   cd ../frontend```
+   cd ../frontend
 
    ````
 
 7. Instalar las dependencias del frontend:
 
    ````bash
-   npm install```
+   npm install
    ````
 
 ## Ejecución en producción
@@ -72,26 +72,26 @@ Verificar si se tiene Node.js y MongoDB Compass instalado y seguir los siguiente
 1. Acceder a la carpeta del backend:
 
    ````bash
-   cd backend```
+   cd backend
 
    ````
 
 2. Ejecutar el backend:
 
    ````bash
-   npm run dev```
+   npm run dev
 
    ````
 
 3. Abrir un nuevo terminar y acceder a la carpeta del frontend:
 
    ````bash
-   cd frontend```
+   cd frontend
 
    ````
 
 4. Ejecutar el frontend:
 
    ````bash
-   npm run dev```
+   npm run dev
    ````
