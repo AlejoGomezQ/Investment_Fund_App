@@ -6,6 +6,7 @@
                 <tr>
                     <th class="py-2 px-4 text-left">ID Transacción</th>
                     <th class="py-2 px-4 text-left">ID Fondo</th>
+                    <th class="py-2 px-4 text-left">Nombre Fondo</th>
                     <th class="py-2 px-4 text-left">Tipo</th>
                     <th class="py-2 px-4 text-left">Fecha</th>
                     <th class="py-2 px-4 text-left">Monto</th>
@@ -16,6 +17,7 @@
                 <tr class="border-b">
                     <td class="py-2 px-4">{{ transaction.transactionId }}</td>
                     <td class="py-2 px-4">{{ transaction.fundId }}</td>
+                    <td class="py-2 px-4">{{ transaction.fundName }}</td>
                     <td class="py-2 px-4">{{ transaction.type }}</td>
                     <td class="py-2 px-4">{{ transaction.date | date:'medium' }}</td>
                     <td class="py-2 px-4">{{ transaction.amount | currency:'COP':'symbol-narrow':'1.0-0' }}</td>

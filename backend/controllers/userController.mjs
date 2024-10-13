@@ -61,6 +61,7 @@ export const subscribeToFund = async (req, res) => {
     user.transactions.push({
       transactionId: `TRX-${Date.now()}`,
       fundId,
+      fundName: fund.name,
       type: "Subscription",
       amount,
     });
@@ -138,37 +139,3 @@ export const getUserTransactions = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
-/* export const changeNotificationPreferences = async (req, res) => {
-  const { userId, email, sms, preferredMethod } = req.body;
-
-  try {
-    const user = await User.findOne({ id: userId });
-
-    if (!user) {
-      return res.status(404).json({ message: "Usuario no encontrado" });
-    }
-
-    if (!email && !sms) {
-      return res.status(400).json({
-        message: "Proporcione al menos una notificación (email o SMS)",
-      });
-    }
-
-    user.notificationPreferences = {
-      email,
-      sms,
-      preferredMethod,
-    };
-
-    await user.save();
-
-    res.status(200).json({
-      message: "Preferencias de notificación actualizadas",
-      user,
-    });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
- */

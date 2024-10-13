@@ -11,6 +11,10 @@ const TransactionSchema = new mongoose.Schema(
       ref: "Fund",
       required: true,
     },
+    fundName: {
+      type: String,
+      required: true,
+    },
     type: {
       type: String,
       enum: ["Subscription", "Cancellation"],
