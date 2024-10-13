@@ -115,6 +115,7 @@ export const cancelFund = async (req, res) => {
     user.transactions.push({
       transactionId: `TRX-${Date.now()}`,
       fundId,
+      fundName: fund.name,
       type: "Cancellation",
       amount,
     });
