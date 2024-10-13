@@ -7,7 +7,7 @@
         <div class="p-4">
             <p class="text-[#6B7280] mb-2">Categoría: {{ fund.category }}</p>
             <p class="text-[#374151] font-semibold">
-                Monto Mínimo: ${{ fund.minAmount }} COP
+                Monto mínimo: {{ +fund.minAmount | currency:'COP':'symbol-narrow':'1.0-0' }} COP
             </p>
         </div>
     </div>
