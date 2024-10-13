@@ -15,7 +15,7 @@
         </div>
         }
     </section>
-    <app-confirmation-modal [isOpen]="isModalOpen" [fundName]="selectedFund?.name" (confirm)="confirmCancelFund()"
+    <app-confirmation-modal [isOpen]="isModalOpen" [selectedFund]="selectedFund" (confirm)="confirmCancelFund()"
         (cancel)="closeModal()"></app-confirmation-modal>
 </main>
 }
