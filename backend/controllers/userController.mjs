@@ -56,7 +56,12 @@ export const subscribeToFund = async (req, res) => {
     }
 
     user.balance -= amount;
-    user.funds.push({ fundId, amount, notificationPreferences });
+    user.funds.push({
+      fundId,
+      fundName: fund.name,
+      amount,
+      notificationPreferences,
+    });
 
     user.transactions.push({
       transactionId: `TRX-${Date.now()}`,
