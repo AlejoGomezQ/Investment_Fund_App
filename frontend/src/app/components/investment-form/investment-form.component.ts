@@ -53,26 +53,30 @@ export class InvestmentFormComponent implements OnInit {
     if (this.investmentForm.valid) {
       const { fundId, amount, notificationPreferences } =
         this.investmentForm.value;
-      const selectedFund = this.funds$.find((fund) => fund.fundId === fundId);
+      const selectedFund = this.funds$.find((fund) => fund.fundId === +fundId);
 
-      this.fundService
-        .subscribeToFund(fundId, amount, notificationPreferences)
-        .subscribe({
-          next: () => {
-            this.showToastMessage(
-              `Has suscrito al fondo ${selectedFund?.name}`,
-              true
-            );
-            this.investmentForm.reset();
-          },
-          error: (error) => {
-            this.showToastMessage(
-              `No puedes suscribirte al fondo ${selectedFund?.name}`,
-              false
-            );
-            console.error('Error al realizar la inversión:', error);
-          },
-        });
+      if (selectedFund) {
+        this.fundService
+          .subscribeToFund(fundId, amount, notificationPreferences)
+          .subscribe({
+            next: () => {
+              this.showToastMessage(
+                `Has suscrito al fondo ${selectedFund.name}`,
+                true
+              );
+              this.investmentForm.reset();
+            },
+            error: (error) => {
+              this.showToastMessage(
+                `No puedes suscribirte al fondo ${selectedFund.name}`,
+                false
+              );
+              console.error('Error al realizar la inversión:', error);
+            },
+          });
+      } else {
+        this.showToastMessage('Fondo no encontrado', false);
+      }
     } else {
       this.showToastMessage(
         'Por favor, complete todos los campos correctamente',
@@ -87,6 +91,6 @@ export class InvestmentFormComponent implements OnInit {
     this.showToast = true;
     setTimeout(() => {
       this.showToast = false;
-    }, 3000);
+    }, 5000);
   }
 }

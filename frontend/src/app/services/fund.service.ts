@@ -52,7 +52,9 @@ export class FundService {
     return this.http.get<Fund[]>(`${this.baseUrl}/${userId}/active-funds`);
   }
 
-  getTransactions(userId: string): Observable<Transaction> {
-    return this.http.get<Transaction>(`${this.baseUrl}/${userId}/transactions`);
+  getTransactions(userId: string): Observable<{ transactions: Transaction[] }> {
+    return this.http.get<{ transactions: Transaction[] }>(
+      `${this.baseUrl}/${userId}/transactions`
+    );
   }
 }

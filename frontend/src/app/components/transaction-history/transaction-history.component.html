@@ -5,21 +5,26 @@
             <thead class="bg-gray-100">
                 <tr>
                     <th class="py-2 px-4 text-left">ID Transacción</th>
-                    <th class="py-2 px-4 text-left">Fondo</th>
+                    <th class="py-2 px-4 text-left">ID Fondo</th>
                     <th class="py-2 px-4 text-left">Tipo</th>
-                    <th class="py-2 px-4 text-left">Monto</th>
                     <th class="py-2 px-4 text-left">Fecha</th>
+                    <th class="py-2 px-4 text-left">Monto</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let transaction of transactions$" class="border-b">
+                @for (transaction of transactions$; track $index) {
+                <tr class="border-b">
                     <td class="py-2 px-4">{{ transaction.transactionId }}</td>
                     <td class="py-2 px-4">{{ transaction.fundId }}</td>
                     <td class="py-2 px-4">{{ transaction.type }}</td>
-                    <td class="py-2 px-4">{{ transaction.amount | currency:'COP':'symbol-narrow':'1.0-0' }}</td>
                     <td class="py-2 px-4">{{ transaction.date | date:'medium' }}</td>
+                    <td class="py-2 px-4">{{ transaction.amount | currency:'COP':'symbol-narrow':'1.0-0' }}</td>
                 </tr>
+                }
             </tbody>
         </table>
     </section>
+    <ng-template #noTransactions>
+        <p class="text-center text-gray-600">No hay transacciones disponibles.</p>
+    </ng-template>
 </main>

@@ -22,8 +22,8 @@ export class TransactionHistoryComponent implements OnInit {
 
   loadTransactions(): void {
     this.fundService.getTransactions(this.userId).subscribe({
-      next: (transaction: Transaction) => {
-        this.transactions$ = [transaction];
+      next: (response) => {
+        this.transactions$ = response.transactions;
         console.log('Transactions loaded:', this.transactions$);
       },
       error: (error) => {
