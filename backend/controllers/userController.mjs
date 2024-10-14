@@ -138,7 +138,11 @@ export const getUserTransactions = async (req, res) => {
       return res.status(404).json({ message: "Usuario no encontrado" });
     }
 
-    res.status(200).json({ transactions: user.transactions });
+    const sortedTransactions = user.transactions.sort((a, b) => {
+      return new Date(b.createdAt) - new Date(a.createdAt);
+    });
+
+    res.status(200).json({ transactions: sortedTransactions });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

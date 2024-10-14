@@ -62,14 +62,14 @@ export class InvestmentFormComponent implements OnInit {
           .subscribe({
             next: () => {
               this.showToastMessage(
-                `Has suscrito al fondo ${selectedFund.name}`,
+                `Te has subscrito al fondo ${selectedFund.name}`,
                 true
               );
               this.investmentForm.reset();
             },
             error: (error) => {
               this.showToastMessage(
-                `No puedes suscribirte al fondo ${selectedFund.name}`,
+                `No tiene saldo disponible para vincularse al fondo ${selectedFund.name}`,
                 false
               );
               console.error('Error al realizar la inversión:', error);
