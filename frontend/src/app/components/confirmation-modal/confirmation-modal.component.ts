@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Fund } from '../../models/fund';
 
 @Component({
   selector: 'app-confirmation-modal',
@@ -9,7 +10,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class ConfirmationModalComponent {
   @Input() isOpen: boolean = false;
-  @Input() selectedFund: any = null;
+  @Input() selectedFund: Fund | null = null;
   @Output() confirm = new EventEmitter<void>();
   @Output() cancel = new EventEmitter<void>();
 

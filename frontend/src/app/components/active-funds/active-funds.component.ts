@@ -15,7 +15,7 @@ export class ActiveFundsComponent implements OnInit {
   activeFunds$: any[] = [];
   userId: string = '11522345678';
   isModalOpen: boolean = false;
-  selectedFund: any = null;
+  selectedFund: Fund | null = null;
 
   constructor(private fundService: FundService) {}
 
@@ -27,7 +27,6 @@ export class ActiveFundsComponent implements OnInit {
     this.fundService.getActiveFunds(this.userId).subscribe({
       next: (user) => {
         this.activeFunds$ = user.funds;
-        console.log('Fondos activos:', this.activeFunds$);
       },
       error: (error) => {
         console.error('Error al cargar los fondos:', error);
@@ -36,16 +35,16 @@ export class ActiveFundsComponent implements OnInit {
   }
 
   onCancelFund(fund: Fund): void {
+    console.log('Canceling fund:', fund);
     this.selectedFund = fund;
     this.isModalOpen = true;
   }
 
   confirmCancelFund(): void {
     if (this.selectedFund) {
-      const { fundId, fundName } = this.selectedFund;
+      const { fundId } = this.selectedFund;
 
-      console.log('Cancelando fondo:', fundId, fundName, this.userId);
-      this.fundService.cancelFund(this.userId, fundId).subscribe({
+      this.fundService.cancelFund(this.userId, Number(fundId)).subscribe({
         next: () => {
           this.loadActiveFunds();
           this.closeModal();

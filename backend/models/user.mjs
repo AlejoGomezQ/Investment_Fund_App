@@ -29,7 +29,7 @@ const UserSchema = new mongoose.Schema(
           type: Number,
           ref: "Fund",
         },
-        fundName: {
+        name: {
           type: String,
         },
         amount: {

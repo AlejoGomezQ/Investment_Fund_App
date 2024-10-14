@@ -58,7 +58,7 @@ export const subscribeToFund = async (req, res) => {
     user.balance -= amount;
     user.funds.push({
       fundId,
-      fundName: fund.name,
+      name: fund.name,
       amount,
       notificationPreferences,
     });
@@ -66,7 +66,7 @@ export const subscribeToFund = async (req, res) => {
     user.transactions.push({
       transactionId: `TRX-${Date.now()}`,
       fundId,
-      fundName: fund.name,
+      name: fund.name,
       type: "Subscription",
       amount,
     });
@@ -115,7 +115,7 @@ export const cancelFund = async (req, res) => {
     user.transactions.push({
       transactionId: `TRX-${Date.now()}`,
       fundId,
-      fundName: fund.name,
+      name: fund.name,
       type: "Cancellation",
       amount,
     });

@@ -1,7 +1,7 @@
 export interface Transaction {
   transactionId: String;
   fundId: Number;
-  fundName: String;
+  name: String;
   type: TransactionType;
   date: Date;
   amount: number;

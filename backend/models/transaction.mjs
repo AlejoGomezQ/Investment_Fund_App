@@ -11,7 +11,7 @@ const TransactionSchema = new mongoose.Schema(
       ref: "Fund",
       required: true,
     },
-    fundName: {
+    name: {
       type: String,
     },
     type: {
