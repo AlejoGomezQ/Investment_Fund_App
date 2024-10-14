@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { FundService } from '../../services/fund.service';
+import { FundService } from '../../services/fund/fund.service';
 import { Fund } from '../../models/fund';
 import { ToastComponent } from '../toast/toast.component';
 

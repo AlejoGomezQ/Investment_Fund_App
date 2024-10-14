@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 
 //Servicios
-import { FundService } from '../../services/fund.service';
+import { FundService } from '../../services/fund/fund.service';
 
 //Modelos
 import { Fund } from '../../models/fund';

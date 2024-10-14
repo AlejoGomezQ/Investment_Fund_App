@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FundService } from '../../services/fund.service';
+import { FundService } from '../../services/fund/fund.service';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
 import { Fund } from '../../models/fund';

@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Fund } from '../models/fund';
-import { NotificationPreferences } from '../models/notificationPreferences';
-import { Transaction } from '../models/transaction';
-import { User } from '../models/user';
+import { Fund } from '../../models/fund';
+import { NotificationPreferences } from '../../models/notificationPreferences';
+import { Transaction } from '../../models/transaction';
+import { User } from '../../models/user';
 
 @Injectable({
   providedIn: 'root',
